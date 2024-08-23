@@ -16,10 +16,12 @@ body {
 }
 
 .title {
-  font-size: 24px;
+  font-size: 40px;
   color: #333;
   margin-bottom: 20px;
   font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  opacity: 90%;
 }
 
 .message-board {
@@ -66,7 +68,7 @@ button:hover {
   margin-top: 20px;
   max-height: 300px;
   overflow-x: auto;
-  overflow-y: scroll;
+  overflow-y: auto;
   transition: max-height 0.5s ease; /* Smooth size adjustment */
 }
 
