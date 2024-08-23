@@ -6,10 +6,13 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+  padding: 20px; /* Added padding for mobile responsiveness */
 }
 
 .message-container {
   text-align: center;
+  width: 100%;
+  max-width: 600px; /* Restrict max width for larger screens */
 }
 
 .title {
@@ -20,19 +23,22 @@ body {
 }
 
 .message-board {
-  width: 400px;
+  width: 100%;
+  max-width: 400px; /* Adjusted for mobile responsiveness */
   padding: 20px;
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: inline-block;
-  text-align: left; /* Ensures buttons align to the left */
+  text-align: left;
+  overflow: hidden; /* Ensure no overflow during transitions */
 }
 
 textarea {
   width: 100%;
   height: 80px;
   padding: 10px;
+  width: 380px;
   border-radius: 5px;
   border: 1px solid #ccc;
   resize: none;
@@ -59,7 +65,9 @@ button:hover {
 .messages-container {
   margin-top: 20px;
   max-height: 300px;
-  overflow-y: auto;
+  overflow-x: auto;
+  overflow-y: scroll;
+  transition: max-height 0.5s ease; /* Smooth size adjustment */
 }
 
 .message {
@@ -70,14 +78,21 @@ button:hover {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
   animation: fadeIn 0.5s ease-in-out;
+  overflow: hidden; /* Ensure no overflow during transitions */
 }
 
 .message-content {
   margin-bottom: 10px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 .message p {
   margin: 0;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: #2599c0;
+  font-size: 20px;
 }
 
 .message-time {
@@ -95,7 +110,7 @@ button:hover {
 .rank-button,
 .edit-button,
 .delete-button {
-  width: 32%; /* Adjust width to fit side by side */
+  width: 32%;
   padding: 5px;
   border: none;
   border-radius: 3px;
@@ -128,12 +143,17 @@ button:hover {
 }
 
 .delete-button:hover {
-  background-color: #e0514c;
+  background-color: #c9302c;
 }
 
 .message.ranked {
-  background-color: #dff0d8; /* Lighter background for ranked messages */
-  border: 2px solid #3c763d; /* Green border for ranked messages */
+  background-color: #fefbf2;
+  border: 1px solid #000000;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.6s ease-out; /* Adjusted transition duration for smooth fade-out */
 }
 
 @keyframes fadeIn {
@@ -145,4 +165,44 @@ button:hover {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .message-board {
+    max-width: 100%;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .rank-button,
+  .edit-button,
+  .delete-button {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  .rank-button:last-child,
+  .edit-button:last-child,
+  .delete-button:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.edited-time {
+  font-size: 15px;
+  color: #000000;
+  margin-top: 5px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: right;
+}
+
+.no-messages {
+  font-size: 16px;
+  color: #888;
+  margin-top: 20px;
+  text-align: center;
+  display: none; /* Initially hidden */
 }
